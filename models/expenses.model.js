@@ -11,7 +11,8 @@ module.exports = (sequelize, Datatypes) => {
         type: Datatypes.BIGINT,
         defaultValue: Date.now()
       }
-    }
+    },
+    { timestamps: false }
   );
  
  return expenses;
