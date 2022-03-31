@@ -18,3 +18,11 @@ exports.make = (req, res) => {
     console.log(err);
   });
 }
+
+exports.all = (req, res) => {
+  expenses.findAll()
+  .then(data => res.send(data))
+  // .catch(err=>{
+  //   console.log(err);
+  // });
+}
