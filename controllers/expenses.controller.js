@@ -37,7 +37,7 @@ exports.update = (req, res) => {
     !cols.hasOwnProperty("price")
     ) {
     res.status(422).send( {answer: "No params were send!"} );
-  } else{
+  } else {
     expenses.update(
       cols,
       { where: { id } }
