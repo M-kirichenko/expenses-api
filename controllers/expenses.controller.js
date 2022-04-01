@@ -15,7 +15,6 @@ exports.make = (req, res) => {
   })
   .catch(err => {
     res.status(422).send({answer: "Invalid params"});
-    // console.log(err);
   });
 }
 
@@ -37,6 +36,5 @@ exports.delete = (req, res) => {
   })
   .catch(err => {
     res.status(422).send( {answer: "Invalid params"} );
-    // console.log(err);
   });
 }
