@@ -8,22 +8,22 @@ exports.make = (req, res) => {
     !req.body.hasOwnProperty("price")
   ) {
     res.status(422);
-    res.send({answer: "No data was send"});
+    res.send( {answer: "No data was send"} );
   }
   expenses.create(req.body).then(data => {
     res.send(data);
   })
   .catch(err => {
     res.status(422).send({answer: "Invalid params"});
-    console.log(err);
+    // console.log(err);
   });
 }
 
 exports.delete = (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
 
   expenses.destroy({
-    where: {id}
+    where: { id }
   })
   .then(affected => {
     if(affected > 0) {
@@ -32,11 +32,11 @@ exports.delete = (req, res) => {
       });
     } else {
       res.status(404);
-      res.send({answer: `Expense with id:${id} wasn't found!`});
+      res.send( {answer: `Expense with id:${id} wasn't found!`} );
     }
   })
   .catch(err => {
-    res.status(422).send({answer: "Invalid params"});
-    console.log(err);
+    res.status(422).send( {answer: "Invalid params"} );
+    // console.log(err);
   });
 }
