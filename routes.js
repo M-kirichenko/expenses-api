@@ -4,9 +4,11 @@ module.exports = app => {
 
   router.route('/')
   .post(expensesController.make)
-  
+  .get(expensesController.all);
+
   router.route('/:id')
-  .delete(expensesController.delete)
-  
+  .patch(expensesController.update)
+  .delete(expensesController.delete);
+
   app.use('/api/expenses', router);
 }
