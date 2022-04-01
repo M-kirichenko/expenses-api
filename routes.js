@@ -3,6 +3,7 @@ module.exports = app => {
   const router = require('express').Router();
 
   router.route('/')
+  .get(expensesController.all)
   .post(expensesController.make);
   
   router.route('/:id')

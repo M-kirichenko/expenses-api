@@ -54,4 +54,8 @@ exports.update = (req, res) => {
       res.status(422).send( {answer: "Invalid params"} );
     });
   }
+  
+exports.all = (req, res) => {
+  expenses.findAll()
+  .then(data => res.send(data));
 }
