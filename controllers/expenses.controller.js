@@ -15,7 +15,6 @@ exports.make = (req, res) => {
   })
   .catch(err => {
     res.status(422).send( { answer: "Invalid params" } );
-    // console.log(err);
   });
 }
 
@@ -53,7 +52,6 @@ exports.update = (req, res) => {
     })
     .catch(err => {
       res.status(422).send( {answer: "Invalid params"} );
-      // console.log(err);
     });
   }
 }
