@@ -3,11 +3,12 @@ module.exports = app => {
   const router = require('express').Router();
 
   router.route('/')
-  .get(expensesController.all)
-  .post(expensesController.make);
-  
+  .post(expensesController.make)
+  .get(expensesController.all);
+
   router.route('/:id')
-  .patch(expensesController.update);
+  .patch(expensesController.update)
+  .delete(expensesController.delete);
 
   app.use('/api/expenses', router);
 }
