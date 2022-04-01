@@ -6,5 +6,8 @@ module.exports = app => {
   .get(expensesController.all)
   .post(expensesController.make);
   
+  router.route('/:id')
+  .patch(expensesController.update);
+
   app.use('/api/expenses', router);
 }
