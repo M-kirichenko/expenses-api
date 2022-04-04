@@ -8,8 +8,8 @@ module.exports = (sequelize, Datatypes) => {
         type: Datatypes.FLOAT
       },
       date: {
-        type: Datatypes.BIGINT,
-        defaultValue: Date.now()
+        type: Datatypes.DATE,
+        defaultValue: new Date()
       }
     },
     { timestamps: false }
