@@ -30,7 +30,7 @@ exports.delete = (req, res) => {
   })
   .then(affected => {
     if(affected > 0) {
-      res.send(msg(true));
+      res.send( msg(true) );
     } else {
       res.status(404);
       res.send( msg(false, `Expense with id:${id} wasn't found!`) );
@@ -68,7 +68,7 @@ exports.update = (req, res) => {
       if(affected > 0) {
           res.send(msg(true));
       } else {
-        res.status(404).send( msg(`Expense with id:${id} wasn't found!`) );
+        res.status(404).send( msg(false, `Expense with id:${id} wasn't found!`) );
       }
     })
     .catch(err => {
