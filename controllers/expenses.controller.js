@@ -1,6 +1,9 @@
 const db = require("../models");
 const expenses = db.expenses;
 
+const msg = (ok, msg = false) => {
+  return msg ? {ok, msg} : {ok};
+}
 exports.make = (req, res) => {
   if
   (
@@ -8,14 +11,14 @@ exports.make = (req, res) => {
     !req.body.hasOwnProperty("price")
   ) {
     res.status(422);
-    res.send( {answer: "No data was send"} );
+    res.send(msg(false, "No data was send"));
   }
 
   expenses.create(req.body).then(data => {
-    res.send(data);
+    res.send( msg(true) );
   })
   .catch(err => {
-    res.status(422).send({answer: "Invalid params"});
+    res.status(422).send( msg(false, "Invalid params") );
   });
 }
 
@@ -27,16 +30,14 @@ exports.delete = (req, res) => {
   })
   .then(affected => {
     if(affected > 0) {
-      res.send({
-        answer: `Expense with id:${id} was successfully deleted!`
-      });
+      res.send(msg(true));
     } else {
       res.status(404);
-      res.send( {answer: `Expense with id:${id} wasn't found!`} );
+      res.send( msg(false, `Expense with id:${id} wasn't found!`) );
     }
   })
   .catch(err => {
-    res.status(422).send( {answer: "Invalid params"} );
+    res.status(422).send( msg(false, "Invalid params") );
   });
 }
 
@@ -57,7 +58,7 @@ exports.update = (req, res) => {
     !cols.hasOwnProperty("date") &&
     !cols.hasOwnProperty("price")
     ) {
-    res.status(422).send( {answer: "No params were send!"} );
+    res.status(422).send( msg(false, "No params were send!") );
   } else {
     expenses.update(
       cols,
@@ -65,15 +66,13 @@ exports.update = (req, res) => {
     )
     .then(affected => {
       if(affected > 0) {
-          res.send( {answer: `Expense with id:${id} was successfully updated!`} );
+          res.send(msg(true));
       } else {
-        res.status(404).send({
-          answer: `Expense with id:${id} wasn't found!`
-        });
+        res.status(404).send( msg(`Expense with id:${id} wasn't found!`) );
       }
     })
     .catch(err => {
-      res.status(422).send( {answer: "Invalid params"} );
+      res.status(422).send( msg(false, "Invalid params") );
     });
   }
 }
