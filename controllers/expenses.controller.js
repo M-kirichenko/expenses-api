@@ -2,13 +2,12 @@ const db = require("../models");
 const expenses = db.expenses;
 
 exports.make = (req, res) => {
-  if
-  (
-    !req.body.hasOwnProperty("name") && 
-    !req.body.hasOwnProperty("price")
-  ) {
+
+  const {body} = req;
+
+  if( !body["name"] || !body["price"] ) {
     res.status(422);
-    res.send( {answer: "No data was send"} );
+    res.send( {answer: "Both price and name are required"} );
   }
 
   expenses.create(req.body).then(data => {
